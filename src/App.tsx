@@ -1,12 +1,26 @@
+import { CountdownTimer } from './components/CoundownTimer'
 
-
-function App() {
-
+export const App = () => {
   return (
     <main>
-      Holaaa ⌛
+      <CountdownTimer
+        minutes={2}
+        size={200}
+        strokeBgColor='pink'
+        strokeColor='blue'
+        strokeWidth={4}
+        updateTimer='second'
+        updateStroke='second'
+      />
+      <CountdownTimer
+        minutes={20}
+        size={100}
+        strokeBgColor='pink'
+        strokeColor='blue'
+        strokeWidth={4}
+        updateTimer='second'
+        updateStroke='minute'
+      />
     </main>
   )
 }
-
-export default App
