@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import useCountdownTimer from '../hooks/useCountdownTimer'
 import { CountdownTimerProps } from '../interfaces/CountdownTimer'
 import { Button } from './Button'
+import tomato from '../assets/images/tomate.png'
 
 export const CountdownTimer = ({
   minutes,
@@ -42,6 +43,11 @@ export const CountdownTimer = ({
         'concéntrate',
         'queda poco',
         'vamos!',
+        'dale!',
+        'no te rindas',
+        'sigue así',
+        'vas bien',
+        'fuerza!',
       ]
       const timerInterval = setInterval(() => {
         const randomIndex = Math.floor(Math.random() * positiveWords.length)
@@ -80,18 +86,19 @@ export const CountdownTimer = ({
         className='countdown-container'
         style={{ '--countdown-size': `${size}px` } as React.CSSProperties}
       >
-        <p className='countdown-text'>
+        <div className='countdown-text'>
+          <img className='countdown-image' src={tomato} alt='tomato' />
           <span className='countdown-timer'>{timeDisplay}</span>
           <p
-            className={`timer-text ${
-              displayText === 'en pausa' ? 'break-text' : ''
-            }`}
+            className={`timer-text ${displayText === 'en pausa' ? 'break-text' : ''
+              }`}
           >
             {displayText}
           </p>
-        </p>
+        </div>
         <svg className='countdown-svg'>
           <circle
+            className='circle-background'
             cx={radius}
             cy={radius}
             r={radius}
@@ -102,13 +109,13 @@ export const CountdownTimer = ({
         </svg>
         <svg className='countdown-svg'>
           <circle
+            className='circle-progress'
             strokeDasharray={circumference}
             strokeDashoffset={currentStrokeOffset}
             r={radius}
             cx={radius}
             cy={radius}
             fill='none'
-            strokeLinecap='round'
             stroke={strokeColor}
             strokeWidth={strokeWidth}
           ></circle>

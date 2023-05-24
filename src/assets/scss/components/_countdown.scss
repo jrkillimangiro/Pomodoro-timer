@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 .countdown-container {
   display: flex;
   justify-content: center;
@@ -18,31 +20,51 @@
   overflow: visible;
 }
 
+.countdown-container:hover .timer-text {
+  opacity: 1;
+}
+
 .countdown-text {
   color: var(--stroke-color);
   font-size: calc(var(--countdown-size) * 0.3);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   justify-items: center;
   padding-top: 1.5rem;
 
   p {
-    opacity: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: opacity 0.5s ease-in-out;
   }
+
+  @include xl {
+    p:not(.break-text) {
+      opacity: 0;
+    }
+  }
+
 
   .countdown-timer {
     font-size: 2rem;
   }
 
-  .break-text {
-    opacity: 1;
-  }
 }
 
-.countdown-container:hover .timer-text,
-.countdown-container:hover .break-text {
-  opacity: 1;
+
+
+.button-container {
+  margin: 3rem
+}
+
+.circle-background {
+  opacity: 0.2;
+}
+
+.circle-progress {
+  opacity: 0.6;
+}
+
+.countdown-image {
+  width: 40px;
 }
