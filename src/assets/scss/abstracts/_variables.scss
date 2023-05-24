@@ -1,0 +1,5 @@
+// Calculate button size based on countdown size
+
+$button-small: calc(var(--countdown-size) * 1);
+$button-medium: calc(var(--countdown-size) * 1.2);
+$button-large: calc(var(--countdown-size) * 1.4);

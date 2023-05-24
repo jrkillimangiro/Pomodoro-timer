@@ -3,31 +3,6 @@
 @use 'abstracts';
 @use 'components';
 
-main {
-  display: flex;
-}
-
-.button-container {
-  display: flex;
-  position: relative;
-  margin: auto;
-}
-
-.button-container-disabled {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.button {
-  font-size: 16px;
-  padding: 15px 40px;
-  background-color: #4d4d4d;
-  color: lightgray;
-  border: none;
-  cursor: pointer;
-  outline: 0;
-  margin: 1rem;
-}
 
 .countdown-container {
   display: flex;

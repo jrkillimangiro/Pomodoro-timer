@@ -2,11 +2,13 @@
 
 <h1 align="center">Pomodoro Timer ⌛</h1>
 
-> UI challenge from FrontEnd Fridays. Technologies: REACT, TYPESCRIPT, SCSS.
+> Pomodoro Timer Project "NeuralWorks". Technologies: REACT, TYPESCRIPT, SCSS.
 
 ### ✨ Demo
 
---
+You can access to Demo here --> [https://pomodoro-timer-neuralworks.netlify.app/](https://pomodoro-timer-neuralworks.netlify.app/)
+
+*Last release to production: 23-05-2023
 
 
 ## Setup
@@ -44,7 +46,10 @@ npm run build
 
 ## Approach
 
---
+Hey! Would you like to know more about this project ?
+Check the board with the track in this link below 👇
+
+- [Pomodoro Timer Project](https://github.com/users/Dereemii/projects/4?pane=info)
 
 ## Author
 

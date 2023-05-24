@@ -1,5 +1,6 @@
 import useCountdownTimer from '../hooks/useCountdownTimer'
 import { CountdownTimerProps } from '../interfaces/CountdownTimer'
+import { Button } from './Button'
 
 export const CountdownTimer = ({
   minutes,
@@ -14,6 +15,8 @@ export const CountdownTimer = ({
     timeDisplay,
     startTimer,
     pauseTimer,
+    restartTimer,
+    handleBreak,
     currentStrokeOffset,
     isPlaying,
     circumference,
@@ -30,14 +33,11 @@ export const CountdownTimer = ({
 
   return (
     <div>
-      <div className='button-container'>
-        <button className='button' onClick={startTimer} disabled={isPlaying}>
-          START
-        </button>
-        <button className='button' onClick={pauseTimer} disabled={!isPlaying}>
-          PAUSE
-        </button>
-      </div>
+      <section className='button-container'>
+        <Button text={'Pausa corta: 5min'} onClick={() => handleBreak(5)} size={size} />
+        <Button text={'Pausa larga: 10min'} onClick={() => handleBreak(10)} size={size} />
+      </section>
+
       <figure
         className='countdown-container'
         style={{ '--countdown-size': `${size}px` } as React.CSSProperties}
@@ -67,6 +67,11 @@ export const CountdownTimer = ({
           ></circle>
         </svg>
       </figure>
+      <section className='button-container'>
+        <Button text='comenzar' onClick={startTimer} size={size} disabled={isPlaying} />
+        <Button text='pausar' onClick={pauseTimer} size={size} disabled={!isPlaying} />
+        <Button text='reiniciar' onClick={restartTimer} size={size} />
+      </section>
     </div>
   )
 }

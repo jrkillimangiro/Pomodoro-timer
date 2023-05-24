@@ -1,0 +1,48 @@
+@use '../abstracts' as *;
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button:disabled,
+button[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.button {
+    font-size: 1rem;
+    padding: 0.4rem;
+    background-color: #4d4d4d;
+    color: lightgray;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+    margin: 1rem;
+    text-transform: capitalize;
+
+    @include xs {
+        width: $button-small;
+    }
+
+    @include md {
+        width: $button-medium;
+    }
+
+    @include xl {
+        width: $button-large;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+}
