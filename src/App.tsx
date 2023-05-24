@@ -7,7 +7,7 @@ export const App = () => {
         minutes={25}
         size={100}
         strokeBgColor='pink'
-        strokeColor='blue'
+        strokeColor='#FF647F'
         strokeWidth={100}
         updateTimer='second'
         updateStroke='second'

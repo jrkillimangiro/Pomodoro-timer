@@ -43,6 +43,11 @@ export const CountdownTimer = ({
         'concéntrate',
         'queda poco',
         'vamos!',
+        'dale!',
+        'no te rindas',
+        'sigue así',
+        'vas bien',
+        'fuerza!',
       ]
       const timerInterval = setInterval(() => {
         const randomIndex = Math.floor(Math.random() * positiveWords.length)
