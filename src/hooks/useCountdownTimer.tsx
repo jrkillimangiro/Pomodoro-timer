@@ -1,12 +1,10 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react';
+import { CountdownTimerProps } from '../interfaces/CountdownTimer';
+import { format } from 'date-fns';
 
-import { CountdownTimerProps } from '../interfaces/CountdownTimer'
-
-import { format } from 'date-fns'
-
-const ONE_MINUTE = 60
-const ONE_SECOND = 1000
-const MILLISECONDS_IN_MINUTE = ONE_MINUTE * ONE_SECOND
+const ONE_MINUTE = 60;
+const ONE_SECOND = 1000;
+const MILLISECONDS_IN_MINUTE = ONE_MINUTE * ONE_SECOND;
 
 export const useCountdownTimer = ({
   minutes,
@@ -17,90 +15,97 @@ export const useCountdownTimer = ({
   updateTimer,
   updateStroke,
 }: CountdownTimerProps) => {
-  const [timeLeft, setTimeLeft] = useState(minutes * MILLISECONDS_IN_MINUTE)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentStrokeOffset, setCurrentStrokeOffset] = useState(0)
+  const [originalTime, setOriginalTime] = useState(minutes * MILLISECONDS_IN_MINUTE);
+  const [timeLeft, setTimeLeft] = useState(originalTime);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentStrokeOffset, setCurrentStrokeOffset] = useState(0);
 
-  const milliseconds = minutes * MILLISECONDS_IN_MINUTE
-  const circumference = size * Math.PI
+  const milliseconds = originalTime;
+  const circumference = size * Math.PI;
 
-  const radius = size / 2
+  const radius = size / 2;
 
   const intervalDuration =
-    updateTimer === 'second' ? ONE_SECOND : MILLISECONDS_IN_MINUTE
+    updateTimer === 'second' ? ONE_SECOND : MILLISECONDS_IN_MINUTE;
 
   const strokeDashoffset = useCallback(() => {
     if (isPlaying) {
       const calculatedOffset =
-        circumference - (timeLeft / milliseconds) * circumference
-      return isNaN(calculatedOffset) ? 0 : calculatedOffset
+        circumference - (timeLeft / milliseconds) * circumference;
+      return isNaN(calculatedOffset) ? 0 : calculatedOffset;
     }
-    return currentStrokeOffset
-  }, [timeLeft, currentStrokeOffset, isPlaying, milliseconds, circumference])
+    return currentStrokeOffset;
+  }, [timeLeft, currentStrokeOffset, isPlaying, milliseconds, circumference]);
 
   useEffect(() => {
-    let intervalId: number
+    let intervalId: number;
     const handleInterval = () => {
       setTimeLeft((prevTimeLeft) => {
-        const newTimeLeft = prevTimeLeft - intervalDuration
+        const newTimeLeft = prevTimeLeft - intervalDuration;
 
         if (newTimeLeft <= ONE_SECOND) {
-          clearInterval(intervalId)
-          setIsPlaying(false)
-          setCurrentStrokeOffset(0)
-          return milliseconds
+          clearInterval(intervalId);
+          setIsPlaying(false);
+          setCurrentStrokeOffset(0);
+          return originalTime;
         }
         switch (updateStroke) {
           case 'second':
             (newTimeLeft / ONE_SECOND) % 1 === 0 &&
-              setCurrentStrokeOffset(strokeDashoffset())
-            break
+              setCurrentStrokeOffset(strokeDashoffset());
+            break;
           case 'minute':
             (newTimeLeft / ONE_SECOND) % ONE_MINUTE === 0 &&
-              setCurrentStrokeOffset(strokeDashoffset())
-            break
+              setCurrentStrokeOffset(strokeDashoffset());
+            break;
         }
-        return newTimeLeft
-      })
-    }
+        return newTimeLeft;
+      });
+    };
 
     if (isPlaying) {
-      intervalId = setInterval(handleInterval, intervalDuration)
+      intervalId = setInterval(handleInterval, intervalDuration);
     }
 
     return () => {
-      clearInterval(intervalId)
-    }
+      clearInterval(intervalId);
+    };
   }, [
     isPlaying,
     timeLeft,
-    milliseconds,
+    originalTime,
     strokeDashoffset,
     intervalDuration,
     updateTimer,
     updateStroke,
-  ])
+  ]);
 
   const startTimer = () => {
-    setIsPlaying(true)
-  }
+    setIsPlaying(true);
+    console.log('minutes: ', minutes, 'originalTime:', originalTime)
+  };
 
   const pauseTimer = () => {
-    setIsPlaying(false)
-  }
+    setIsPlaying(false);
+  };
 
   const restartTimer = () => {
-    setTimeLeft(minutes * MILLISECONDS_IN_MINUTE)
-    setIsPlaying(false)
-    setCurrentStrokeOffset(0)
-  }
+    setOriginalTime(minutes * MILLISECONDS_IN_MINUTE); // Restaurar el tiempo original configurado inicialmente
+    setTimeLeft(minutes * MILLISECONDS_IN_MINUTE); // Reiniciar al tiempo original
+    console.log('minutes: ', minutes, 'originalTime:', originalTime)
+    setIsPlaying(false);
+    setCurrentStrokeOffset(0);
+  };
+
+
 
   const handleBreak = (breakTime: number) => {
-    setTimeLeft(breakTime * MILLISECONDS_IN_MINUTE)
-    setIsPlaying(true)
-  }
+    setOriginalTime(breakTime * MILLISECONDS_IN_MINUTE);
+    setTimeLeft(breakTime * MILLISECONDS_IN_MINUTE);
+    setIsPlaying(true);
+  };
 
-  const timeDisplay = format(new Date(timeLeft), 'm:ss')
+  const timeDisplay = format(new Date(timeLeft), 'm:ss');
 
   return {
     timeDisplay,
@@ -116,7 +121,7 @@ export const useCountdownTimer = ({
     radius,
     circumference,
     handleBreak,
-  }
-}
+  };
+};
 
-export default useCountdownTimer
+export default useCountdownTimer;

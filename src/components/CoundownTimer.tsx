@@ -34,9 +34,8 @@ export const CountdownTimer = ({
   return (
     <div>
       <section className='button-container'>
-        <Button text={'1min'} onClick={() => handleBreak(1)} size={size} />
-        <Button text={'5min'} onClick={() => handleBreak(5)} size={size} />
-        <Button text={'10min'} onClick={() => handleBreak(10)} size={size} />
+        <Button text={'Pausa corta: 5min'} onClick={() => handleBreak(5)} size={size} />
+        <Button text={'Pausa larga: 10min'} onClick={() => handleBreak(10)} size={size} />
       </section>
 
       <figure
@@ -44,7 +43,6 @@ export const CountdownTimer = ({
         style={{ '--countdown-size': `${size}px` } as React.CSSProperties}
       >
         <p className='countdown-text'>{timeDisplay}</p>
-        {/* {handleShortBreak && <p>short break</p>} */}
         <svg className='countdown-svg'>
           <circle
             cx={radius}

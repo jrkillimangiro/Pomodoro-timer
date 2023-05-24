@@ -4,7 +4,7 @@ export const App = () => {
   return (
     <main>
       <CountdownTimer
-        minutes={15}
+        minutes={25}
         size={150}
         strokeBgColor='pink'
         strokeColor='blue'
