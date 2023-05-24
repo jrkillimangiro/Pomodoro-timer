@@ -5,10 +5,10 @@ export const App = () => {
     <main>
       <CountdownTimer
         minutes={25}
-        size={150}
+        size={100}
         strokeBgColor='pink'
         strokeColor='blue'
-        strokeWidth={4}
+        strokeWidth={100}
         updateTimer='second'
         updateStroke='second'
       />
