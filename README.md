@@ -49,7 +49,7 @@ npm run build
 Hey! Would you like to know more about this project ?
 Check the board with the track in this link below 👇
 
-- [Pomodoro Timer Project](https://github.com/users/Dereemii/projects/4)
+- [Pomodoro Timer Project](https://github.com/users/Dereemii/projects/4?pane=info)
 
 ## Author
 

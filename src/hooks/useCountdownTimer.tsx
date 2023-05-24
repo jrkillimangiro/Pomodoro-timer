@@ -89,12 +89,24 @@ export const useCountdownTimer = ({
     setIsPlaying(false)
   }
 
+  const restartTimer = () => {
+    setTimeLeft(minutes * MILLISECONDS_IN_MINUTE)
+    setIsPlaying(false)
+    setCurrentStrokeOffset(0)
+  }
+
+  const handleBreak = (breakTime: number) => {
+    setTimeLeft(breakTime * MILLISECONDS_IN_MINUTE)
+    setIsPlaying(true)
+  }
+
   const timeDisplay = format(new Date(timeLeft), 'm:ss')
 
   return {
     timeDisplay,
     startTimer,
     pauseTimer,
+    restartTimer,
     currentStrokeOffset,
     strokeBgColor,
     strokeColor,
@@ -103,6 +115,7 @@ export const useCountdownTimer = ({
     size,
     radius,
     circumference,
+    handleBreak,
   }
 }
 
