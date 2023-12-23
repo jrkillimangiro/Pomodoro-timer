@@ -40,7 +40,7 @@ export const useCountdownTimer = ({
   }, [timeLeft, currentStrokeOffset, isPlaying, milliseconds, circumference])
 
   useEffect(() => {
-    let intervalId: number
+    let intervalId: NodeJS.Timeout
     const handleInterval = () => {
       setTimeLeft((prevTimeLeft) => {
         const newTimeLeft = prevTimeLeft - intervalDuration
@@ -123,5 +123,4 @@ export const useCountdownTimer = ({
     handleBreak,
   }
 }
-
 export default useCountdownTimer
